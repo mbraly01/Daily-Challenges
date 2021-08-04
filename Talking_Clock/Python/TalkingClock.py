@@ -25,6 +25,8 @@ tz_colon = tz_dict[timezone].split(":")
 gmt_split = gmt_time.split(":")
 tz_hour = int(tz_colon[0]) + int(gmt_split[0])
 tz_min = int(gmt_split[1])
+ampm = gmt_time.split(" ")[1]
+
 if len(tz_colon) > 1:
     tz_min += int(tz_colon[0][0] + tz_colon[1])
     if tz_min < 0:
@@ -33,7 +35,14 @@ if len(tz_colon) > 1:
     if tz_min > 59:
         tz_hour += 1
         tz_min = 60 - tz_min
-tz_str = str(tz_hour) + ":" + str(tz_min) + ":" + gmt_time.split(" ")[1]
+if (tz_hour < 0):
+    tz_hour = 24 + tz_hour
+    if (tz_hour > 11):
+        tz_hour -= 12
+        ampm = "PM"
+    else:
+        ampm = "AM"
+tz_str = str(tz_hour) + ":" + str(tz_min) + ":" + ampm
 
 
 tz_final_split = tz_str.split(":")
