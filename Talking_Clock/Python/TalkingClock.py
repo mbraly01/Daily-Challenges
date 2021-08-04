@@ -27,6 +27,7 @@ tz_hour = int(tz_colon[0]) + int(gmt_split[0])
 tz_min = int(gmt_split[1])
 ampm = gmt_time.split(" ")[1]
 
+#Corrects time based on selected timezone
 if len(tz_colon) > 1:
     tz_min += int(tz_colon[0][0] + tz_colon[1])
     if tz_min < 0:
@@ -44,7 +45,7 @@ if (tz_hour < 0):
         ampm = "AM"
 tz_str = str(tz_hour) + ":" + str(tz_min) + ":" + ampm
 
-
+#converts integer values to strings
 tz_final_split = tz_str.split(":")
 tz_final_str = ""
 if tz_final_split[0] == "1":

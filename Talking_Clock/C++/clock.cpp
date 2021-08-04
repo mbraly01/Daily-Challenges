@@ -10,6 +10,7 @@
 
 Clock::Clock() {
 
+    //Makes unordered map of timezones
     std::ifstream file("/Users/mattbraly/Documents/Summer/Daily_Challenges/Talking_Clock/C++/TimeZones.csv");
     if(!file.is_open()) throw std::runtime_error("Could not open file");
 
@@ -32,6 +33,7 @@ Clock::Clock() {
     this->um_timezones = umap;
 }
 
+//Checks to make sure the timezone is valid
 bool Clock::isValid(std::string time) {
 
     int len = time.size();
@@ -53,6 +55,7 @@ bool Clock::isValid(std::string time) {
     }
 }
 
+//Converts gmt time and timezone to string
 std::string Clock::getFinalTime() {
 
     std::string final_time = "";
@@ -60,10 +63,14 @@ std::string Clock::getFinalTime() {
     time_t now;
     struct tm * ptm;
     char buffer[10];
+
+    //gets gmt time
     time ( &now );
     ptm = gmtime ( &now );
     strftime(buffer, sizeof(buffer), "%H:%M", ptm);
     std::string str(buffer);
+
+    //converts time zone into integers
     std::stringstream ss_hour(time_zone.substr(1,3));
     int hour = 0;
     ss_hour >> hour;
@@ -75,6 +82,7 @@ std::string Clock::getFinalTime() {
     ss_gmt_hour >> gmt_hour;
     int min = 0;
 
+    //gets gmt minutes
     std::stringstream ss_gmt_min(str.substr(str.find(":") + 1, str.length()));
     int gmt_min = 0;
     ss_gmt_min >> gmt_min;
@@ -106,6 +114,8 @@ std::string Clock::getFinalTime() {
         gmt_hour -= 12;
         am_pm = "PM";
     }
+
+    //Converts integer to string
     if (gmt_hour == 0) {
         final_time += "twelve ";
     }

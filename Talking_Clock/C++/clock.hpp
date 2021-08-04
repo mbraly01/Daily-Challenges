@@ -14,8 +14,4 @@ class Clock {
         bool isValid(std::string time);
         std::string getFinalTime();
 
-
-        // void talk();
-
-        // ~Clock();
 };

@@ -9,6 +9,8 @@ public class Clock {
     public static String getTimezone() {
 
         ArrayList<String> timeZoneAbbrev = new ArrayList<>();
+
+        //reads in timezones
         try {
             File file = new File("/Users/mattbraly/Documents/Summer/Daily_Challenges/Talking_Clock/Java/src/TimeZones.csv");
             BufferedReader brTime = new BufferedReader(new FileReader(file));
@@ -28,6 +30,8 @@ public class Clock {
         boolean isValid = false;
 
         String str = "";
+
+        //Gets input
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter time zone");
@@ -49,6 +53,7 @@ public class Clock {
         }
     }
 
+    //Gets gmt time
     public static String getTime(String timezone) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -59,6 +64,7 @@ public class Clock {
         return sdf.format(date);
     }
 
+    //Converts String
     public static String finalizeTime(String time) {
         String[] hourMin = time.split(":");
 
@@ -187,6 +193,7 @@ public class Clock {
         return finalTime;
     }
 
+    //Gets computer to talk
     public static void Talk(String time) {
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         final VoiceManager voiceManager = VoiceManager.getInstance();
