@@ -41,7 +41,7 @@ public class Clock {
                 if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
                     break;
                 }
-                str.toUpperCase();
+                str = str.toUpperCase();
                 for (String timeZone : timeZoneAbbrev) {
                     if (timeZone.equals(str)) {
                         return str;
