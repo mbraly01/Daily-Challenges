@@ -35,5 +35,5 @@ node2 = node2.make_chain(list2[1:])
 fin = merge(node1, node2)
 
 while fin != None:
-    print(fin.val)
+    print(fin.val,",",end="")
     fin = fin.next
